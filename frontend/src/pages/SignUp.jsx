@@ -1,5 +1,5 @@
 // src/pages/SignUp.jsx
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import {
   Box,
   Button,
@@ -14,14 +14,16 @@ import {
   Link as ChakraLink,
   useToast,
   FormErrorMessage,
-  Select,
-} from '@chakra-ui/react';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { motion } from 'framer-motion';
-import { AuthContext } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+} from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { motion } from "framer-motion";
+import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 
 const MotionVStack = motion(VStack);
+
+// ✅ Use env var for production, fallback for local dev
+const API = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/$/, "");
 
 const SignUp = () => {
   const { login } = useContext(AuthContext);
@@ -29,24 +31,27 @@ const SignUp = () => {
   const toast = useToast();
 
   const [formData, setFormData] = useState({
-    name: '',
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    role: 'parent', // Forced to parent
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "parent", // forced to parent
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.username.trim()) newErrors.username = 'Username is required';
-    if (!formData.email.includes('@')) newErrors.email = 'Valid email is required';
-    if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
-    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.username.trim()) newErrors.username = "Username is required";
+    if (!formData.email.includes("@")) newErrors.email = "Valid email is required";
+    if (formData.password.length < 6) newErrors.password = "Password must be at least 6 characters";
+    if (formData.password !== formData.confirmPassword)
+      newErrors.confirmPassword = "Passwords do not match";
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -54,7 +59,7 @@ const SignUp = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSubmit = async (e) => {
@@ -64,39 +69,47 @@ const SignUp = () => {
     setSubmitting(true);
 
     try {
-      const res = await fetch(const API = import.meta.env.VITE_API_URL;
-fetch(`${API}/api/...`)
-/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+      const payload = {
+        ...formData,
+        role: "parent", // enforce parent
+      };
+
+      const res = await fetch(`${API}/api/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error(data.msg || 'Registration failed');
+        throw new Error(data.msg || data.message || "Registration failed");
       }
 
-      // Auto-login after signup
-      localStorage.setItem('token', data.token);
-      login(data.user);
+      // ✅ Store token + user
+      if (data.token) localStorage.setItem("token", data.token);
+
+      if (data.user) {
+        login(data.user);
+      }
 
       toast({
-        title: 'Account created!',
-        description: 'Welcome! You are now signed in as a parent.',
-        status: 'success',
+        title: "Account created!",
+        description: "Welcome! You are now signed in as a parent.",
+        status: "success",
         duration: 5000,
+        isClosable: true,
       });
 
-      // Redirect based on role (always parent here)
-      navigate('/parent-dashboard');
+      // ✅ Match YOUR App.jsx route
+      navigate("/parentdashboard");
     } catch (err) {
       toast({
-        title: 'Error',
-        description: err.message,
-        status: 'error',
+        title: "Error",
+        description: err.message || "Something went wrong",
+        status: "error",
         duration: 5000,
+        isClosable: true,
       });
     } finally {
       setSubmitting(false);
@@ -109,9 +122,9 @@ fetch(`${API}/api/...`)
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6 }}
       spacing={8}
-      w={{ base: '90%', sm: '480px' }}
+      w={{ base: "90%", sm: "480px" }}
       mx="auto"
-      mt={{ base: '10vh', md: '15vh' }}
+      mt={{ base: "10vh", md: "15vh" }}
       p={{ base: 8, md: 10 }}
       boxShadow="2xl"
       borderRadius="2xl"
@@ -172,7 +185,7 @@ fetch(`${API}/api/...`)
             <InputGroup size="lg">
               <Input
                 name="password"
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={handleChange}
@@ -181,7 +194,7 @@ fetch(`${API}/api/...`)
                 <Button
                   variant="ghost"
                   onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? 'Hide' : 'Show'}
+                  aria-label={showPassword ? "Hide" : "Show"}
                 >
                   {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                 </Button>
@@ -203,9 +216,6 @@ fetch(`${API}/api/...`)
             <FormErrorMessage>{errors.confirmPassword}</FormErrorMessage>
           </FormControl>
 
-          {/* Role is hidden – forced to parent */}
-          <input type="hidden" name="role" value="parent" />
-
           <Button
             type="submit"
             colorScheme="blue"
@@ -221,13 +231,13 @@ fetch(`${API}/api/...`)
       </Box>
 
       <Text fontSize="sm" color="gray.600" mt={6}>
-        Already have an account?{' '}
-        <ChakraLink color="brand.primary" href="/login" fontWeight="medium">
+        Already have an account?{" "}
+        <ChakraLink as={RouterLink} to="/login" color="brand.primary" fontWeight="medium">
           Sign in here
         </ChakraLink>
       </Text>
 
-      <Text fontSize="xs" color="gray.500" mt={4}>
+      <Text fontSize="xs" color="gray.500" mt={4} textAlign="center">
         Note: Only parents can register online. Teachers and admins are created by administrators.
       </Text>
     </MotionVStack>
@@ -235,3 +245,4 @@ fetch(`${API}/api/...`)
 };
 
 export default SignUp;
+
