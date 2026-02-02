@@ -1,0 +1,67 @@
+// src/App.jsx
+import { Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+
+// Public pages
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Curriculum from "./pages/Curriculum";
+import FAQ from "./pages/FAQ";
+import EnrollAndPay from "./pages/EnrollAndPay";
+import Location from "./pages/Location";
+
+// Dashboards
+import ParentDashboard from "./pages/ParentDashboard";
+import TeacherDashboard from "./pages/TeacherDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+import SelectChild from "./pages/SelectChild";
+import ChildDashboard from "./pages/ChildDashboard";
+
+
+import DashboardRedirect from "./pages/DashboardRedirect";
+
+export default function App() {
+  return (
+    <Routes>
+      {/* PUBLIC */}
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/curriculum" element={<Curriculum />} />
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/enroll" element={<EnrollAndPay />} />
+      <Route path="/location" element={<Location />} />
+
+      {/* DASHBOARD BASE */}
+      <Route element={<ProtectedRoute />}>
+        <Route path="/dashboard" element={<DashboardRedirect />} />
+      </Route>
+
+      {/* PARENT */}
+      <Route element={<ProtectedRoute allowedRoles={["parent"]} />}>
+        <Route path="/dashboard/parent" element={<ParentDashboard />} />
+        <Route path="/dashboard/select-child" element={<SelectChild />} />
+        <Route path="/dashboard/child/:childId" element={<ChildDashboard />} />
+      </Route>
+
+      {/* TEACHER */}
+      <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
+        <Route path="/dashboard/teacher" element={<TeacherDashboard />} />
+      </Route>
+
+      {/* ADMIN */}
+      <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+        <Route path="/dashboard/admin" element={<AdminDashboard />} />
+      </Route>
+
+      {/* FALLBACK */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
+

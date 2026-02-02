@@ -1,0 +1,144 @@
+/* src/index.css */
+
+/* ============================================================================
+   1. Font imports (if not using Google Fonts via <link> in public/index.html)
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ============================================================================
+   2. Global resets & base styles
+   ============================================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  
+  background-image: url('/pg 3.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto; 
+
+  color: #2D3748;
+  line-height: 1.6;
+}
+
+/* Headings default to Fredoka (can be overridden by Chakra theme) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fredoka', sans-serif;
+  line-height: 1.2;
+}
+
+/* Remove default list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Images & media */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Buttons & links */
+button,
+a {
+  font-family: inherit;
+}
+
+/* Focus visible outline (accessibility) */
+:focus-visible {
+  outline: 3px solid #FFD700;
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+   3. Custom utility classes (use when Chakra props aren't enough)
+   ============================================================================ */
+
+/* Gradient text (used in logo) */
+.gradient-text {
+  background: linear-gradient(90deg, #FFD700, #FF4500, #1E90FF, #32CD32);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Playful hover lift effect */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Heart pulse animation (can be used on CTA or badges) */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+
+.pulse-heart {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Scrollbar styling (optional - modern browsers only) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: black;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: green;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFffff;
+}
+
+/* ============================================================================
+   4. Hero background fallback / overlay helpers
+   ============================================================================ */
+.hero-bg {
+  position: relative;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(30, 144, 255, 0.25),
+    rgba(255, 69, 0, 0.15)
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
