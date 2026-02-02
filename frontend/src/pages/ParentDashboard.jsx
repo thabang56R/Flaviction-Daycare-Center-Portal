@@ -45,7 +45,8 @@ import { FaBullhorn, FaCheckCircle, FaUtensils, FaUser, FaFileAlt, FaWhatsapp } 
 const MotionBox = motion(Box);
 const MotionCard = motion(Card);
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/$/, "");
+
 
 export default function ParentDashboard() {
   const { user } = useContext(AuthContext);
@@ -79,7 +80,7 @@ export default function ParentDashboard() {
   const teacherPhone = "27649173328"; // 27 + number
   const teacherEmail = "teacher@flaviction.co.za";
 
-  const token = useMemo(() => localStorage.getItem("token"), []);
+  
 
   // ----------------------------
   // Fetch children linked to parent
