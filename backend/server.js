@@ -28,15 +28,20 @@ const app = express();
 const allowedOrigins = [
   process.env.APP_BASE_URL, 
   "http://localhost:5173",
-  "https://flaviction-daycare-center-portal-1k6atl444.vercel.app/",  
+  "https://flaviction-daycare-center-portal-1k6atl444.vercel.app", 
 ].filter(Boolean);
 
 app.use(
   cors({
     origin: (origin, cb) => {
+      // allow requests with no origin (Postman, server-to-server)
       if (!origin) return cb(null, true);
-      if (allowedOrigins.includes(origin)) return cb(null, true);
-      return cb(new Error("Not allowed by CORS"));
+
+      // ✅ handle trailing slash just in case
+      const cleanOrigin = origin.replace(/\/$/, "");
+
+      if (allowedOrigins.includes(cleanOrigin)) return cb(null, true);
+      return cb(new Error(`Not allowed by CORS: ${origin}`));
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -44,7 +49,9 @@ app.use(
   })
 );
 
+// ✅ preflight for ALL routes
 app.options("/", cors());
+
 
 
 app.use(express.json());
