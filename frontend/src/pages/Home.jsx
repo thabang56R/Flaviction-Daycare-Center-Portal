@@ -106,7 +106,7 @@ const Hero = () => {
             borderRadius="full"
             margin='0 auto'
           />
-            Welcome to Flaviction DayCare Center
+            Welcome to <div style={{color:'gold'}}>Flaviction</div> <div style={{color:'black'}}>DayCare Center</div>
           </Heading>
 
           <MotionText
@@ -115,7 +115,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05, color: 'yellow.300' }}
             transition={{ duration: 0.3 }}
           >
-            <div style={{color:'red'}}>Raising Happy Hearts 💛 & Bright Minds!</div>
+            <div style={{color:'white'}}>Raising Happy Hearts 💛 & Bright Minds!</div>
           </MotionText>
 
           <MotionText
@@ -126,7 +126,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05, color: 'yellow.300' }}
             transition={{ duration: 0.3 }}
           >
-            <div style={{color:'green'}}>Baby Care • Preschool • Grade R • Aftercare — Your Child's Home Away from Home</div>
+            <div style={{color:'green'}}>Baby Care • Preschool • Grade R • Aftercare </div>— <div style={{color:'black'}}>Your Child's Home Away from Home</div>
           </MotionText>
 
           <Flex gap={5} wrap="wrap" justify="center">
@@ -138,8 +138,8 @@ const Hero = () => {
   py={8}
   fontSize="2xl"
   bg="white"
-  color="brand.primary"
-  _hover={{ bg: "gray.100" }}
+  color="brand.accent"
+  _hover={{ bg: "orange.200" }}
   rounded="full"
   shadow="xl"
 >
@@ -153,8 +153,8 @@ const Hero = () => {
   py={8}
   fontSize="2xl"
   bg="white"
-  color="brand.primary"
-  _hover={{ bg: "gray.100" }}
+  color="black"
+  _hover={{ bg: "orange.200" }}
   rounded="full"
   shadow="xl"
 >
@@ -173,7 +173,7 @@ const Programs = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <Box ref={ref} py={{ base: 16, md: 24 }} bg="grey">
+    <Box ref={ref} py={{ base: 16, md: 24 }} bg="white">
       <Container maxW="container.xl">
         <MotionHeading
           textAlign="center"
@@ -184,9 +184,9 @@ const Programs = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          Our Programs At{" "}
+          Our Programs {" "}
               <Box as="span" color="brand.primary">
-                 Flaviction Daycare
+                At Flaviction
               </Box>
         </MotionHeading>
 
