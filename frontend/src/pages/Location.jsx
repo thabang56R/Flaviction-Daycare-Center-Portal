@@ -85,7 +85,8 @@ export default function Location() {
                     <Box>
                       <Text fontWeight="bold" color="gray.900">Contact</Text>
                       <Text color="gray.600">
-                        Add your phone number here in your Contact page / footer.
+                        Phone & Whatsapp : +27 79 986 3317 <br />
+                        Email : daycarecentreflaviction.co.za
                       </Text>
                     </Box>
                   </HStack>

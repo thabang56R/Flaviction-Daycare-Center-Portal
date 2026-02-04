@@ -27,7 +27,7 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             textAlign="center"
           >
-            <Heading size="3xl" color="green" mb={6}>
+            <Heading size="3xl" color="white" mb={6}>
               Contact Us
             </Heading>
             <Text fontSize="xl" color="gray.700">

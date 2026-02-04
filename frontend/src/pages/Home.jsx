@@ -305,7 +305,7 @@ const CTABanner = () => {
     >
       <Container maxW="container.md">
         <VStack spacing={8}>
-          <Heading fontSize={{ base: '4xl', md: '6xl' }}>Enrolments for 2026 Are Open At{" "}
+          <Heading fontSize={{ base: '4xl', md: '6xl' }}>Enrolments for {new Date().getFullYear()}  Are Open At{" "}
               <Box as="span" color="black">
                  Flaviction Daycare Center!
               </Box></Heading>

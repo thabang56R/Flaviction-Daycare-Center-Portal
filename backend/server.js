@@ -28,7 +28,7 @@ const app = express();
 const allowedOrigins = [
   process.env.APP_BASE_URL, 
   "http://localhost:5173",
-  "https://flaviction-daycare-center-portal-1k6atl444.vercel.app", 
+  "https://flaviction-daycare-center-portal.vercel.app", 
 ].filter(Boolean);
 
 app.use(
