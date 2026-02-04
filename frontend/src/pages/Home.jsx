@@ -115,7 +115,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05, color: 'yellow.300' }}
             transition={{ duration: 0.3 }}
           >
-            <div style={{color:'white'}}>Raising Happy Hearts 💛 & Bright Minds!</div>
+            <div style={{color:'white'}}>Raising Happy Hearts 💛 </div>&<div style={{color:'black'}}>⭐Bright Minds!</div>
           </MotionText>
 
           <MotionText
