@@ -24,7 +24,7 @@ export default function Footer() {
     { label: "FAQ", to: "/faq" },
     { label: "Contact", to: "/contact" },
     { label: "Location", to: "/location" },
-    { label: "Enroll & Pay", to: "/enrollandpay" },
+    { label: "Enroll & Pay", to: "/enroll" },
   ];
 
   return (
@@ -63,8 +63,12 @@ export default function Footer() {
             </HStack>
 
             <Text color="whiteAlpha.800" maxW="320px">
+              <div style={{color:'orange'}}>Your Child's Home Away from Home</div>
               A safe, nurturing, and stimulating environment where children learn,
               play, and grow with confidence.
+              <br />
+              <div style={{color:'grey'}}>Raising Happy Hearts & Bright Minds!</div>
+              
             </Text>
 
             {/* Social icons */}

@@ -27,7 +27,7 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             textAlign="center"
           >
-            <Heading size="3xl" color="white" mb={6}>
+            <Heading size="3xl" color="black" mb={6}>
               Contact Us
             </Heading>
             <Text fontSize="xl" color="gray.700">
@@ -70,7 +70,7 @@ const Contact = () => {
             </VStack>
           </MotionBox>
 
-          <VStack spacing={4} textAlign="center" color='green'>
+          <VStack spacing={4} textAlign="center" color='white'>
             <Text fontSize="lg">
               Email: daycarecentreflaviction.co.za
             </Text>

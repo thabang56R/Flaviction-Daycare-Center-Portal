@@ -24,6 +24,10 @@ import Footer from '../components/common/Footer';
 import PartnersSection from '../components/home/PartnersSection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
 import EnrollAndPay from '../pages/EnrollAndPay';
+import VideoAsImageSection from "../components/home/VideoAsImageSection";
+
+
+
 
 
 
@@ -75,8 +79,9 @@ const Hero = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1 }}
-      bgImage={`url('images.jfif')`}
+      bgImage={`url('image (3).jpg')`}
       bgSize="cover"
+      bgRepeat="no-repeat"
       bgPos="center"
       color="white"
       py={{ base: 24, md: 40 }}
@@ -97,16 +102,7 @@ const Hero = () => {
             fontWeight="extrabold"
             textShadow="2px 4px 12px rgba(0,0,0,0.5)"
           >
-            <Image
-            src="/image.jpg (3).jpg" 
-            alt="Flaviction Daycare Logo"
-            boxSize={{ base: '160px', md: '180px' }}
-            objectFit="contain"
-            fallbackSrc="https://via.placeholder.com/80?text=Logo"
-            borderRadius="full"
-            margin='0 auto'
-          />
-            Welcome to <div style={{color:'gold'}}>Flaviction</div> <div style={{color:'black'}}>DayCare Center</div>
+           
           </Heading>
 
           <MotionText
@@ -115,7 +111,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05, color: 'yellow.300' }}
             transition={{ duration: 0.3 }}
           >
-            <div style={{color:'white'}}>Raising Happy Hearts 💛 </div>&<div style={{color:'black'}}>⭐Bright Minds!</div>
+            
           </MotionText>
 
           <MotionText
@@ -125,8 +121,7 @@ const Hero = () => {
             opacity={0.95}
             whileHover={{ scale: 1.05, color: 'yellow.300' }}
             transition={{ duration: 0.3 }}
-          >
-            <div style={{color:'green'}}>Baby Care • Preschool • Grade R • Aftercare </div>— <div style={{color:'black'}}>Your Child's Home Away from Home</div>
+          > 
           </MotionText>
 
           <Flex gap={5} wrap="wrap" justify="center">
@@ -137,7 +132,7 @@ const Hero = () => {
   px={12}
   py={8}
   fontSize="2xl"
-  bg="white"
+  bg="pink"
   color="brand.accent"
   _hover={{ bg: "orange.200" }}
   rounded="full"
@@ -152,7 +147,7 @@ const Hero = () => {
   px={12}
   py={8}
   fontSize="2xl"
-  bg="white"
+  bg="purple"
   color="black"
   _hover={{ bg: "orange.200" }}
   rounded="full"
@@ -160,12 +155,17 @@ const Hero = () => {
 >
   Take a Tour →
 </Button>
+
           </Flex>
         </MotionVStack>
       </Container>
+      
+      
     </MotionBox>
+    
   );
 };
+
 
 // Programs Component
 const Programs = () => {
@@ -175,6 +175,16 @@ const Programs = () => {
   return (
     <Box ref={ref} py={{ base: 16, md: 24 }} bg="white">
       <Container maxW="container.xl">
+        
+      <Image
+            src="/image.jpg (3).jpg" 
+            alt="Flaviction Daycare Logo"
+            boxSize={{ base: '160px', md: '180px' }}
+            objectFit="contain"
+            fallbackSrc="https://via.placeholder.com/80?text=Logo"
+            borderRadius="full"
+            margin='0 auto'
+          />
         <MotionHeading
           textAlign="center"
           mb={12}
@@ -333,8 +343,7 @@ const CTABanner = () => {
   );
 };
 
-// PartnersSection Component
-<PartnersSection />
+
 
 // Home Page Assembly
 const Home = () => {
@@ -354,7 +363,9 @@ const Home = () => {
       {/*<VideoSection />*/}
       <PartnersSection />
       <TestimonialsSection />
+      <VideoAsImageSection />
       <CTABanner />
+      
       <Footer />
     </Box>
   );
