@@ -96,12 +96,6 @@ Working with real clients and real feedback
 
 Deploying and maintaining live web applications
 
-📸 Screenshots
-
-(Add screenshots here for even more impact)
-
-![Dashboard](screenshots/dashboard.png)
-![Home Page](screenshots/home.png)
 
 📌 Future Enhancements
 
