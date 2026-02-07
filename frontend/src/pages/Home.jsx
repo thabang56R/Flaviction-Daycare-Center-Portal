@@ -123,40 +123,6 @@ const Hero = () => {
             transition={{ duration: 0.3 }}
           > 
           </MotionText>
-
-          <Flex gap={5} wrap="wrap" justify="center">
-            <Button
-  as={RouterLink}
-  to="/enroll"
-  size="xl"
-  px={12}
-  py={8}
-  fontSize="2xl"
-  bg="pink"
-  color="brand.accent"
-  _hover={{ bg: "orange.200" }}
-  rounded="full"
-  shadow="xl"
->
-  Enroll Today →
-</Button>
-            <Button
-  as={RouterLink}
-  to="/location"
-  size="xl"
-  px={12}
-  py={8}
-  fontSize="2xl"
-  bg="purple"
-  color="black"
-  _hover={{ bg: "orange.200" }}
-  rounded="full"
-  shadow="xl"
->
-  Take a Tour →
-</Button>
-
-          </Flex>
         </MotionVStack>
       </Container>
       
@@ -176,15 +142,7 @@ const Programs = () => {
     <Box ref={ref} py={{ base: 16, md: 24 }} bg="white">
       <Container maxW="container.xl">
         
-      <Image
-            src="/image.jpg (3).jpg" 
-            alt="Flaviction Daycare Logo"
-            boxSize={{ base: '160px', md: '180px' }}
-            objectFit="contain"
-            fallbackSrc="https://via.placeholder.com/80?text=Logo"
-            borderRadius="full"
-            margin='0 auto'
-          />
+      
         <MotionHeading
           textAlign="center"
           mb={12}
@@ -194,6 +152,15 @@ const Programs = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
+          <Image
+            src="/image.jpg (3).jpg" 
+            alt="Flaviction Daycare Logo"
+            boxSize={{ base: '160px', md: '180px' }}
+            objectFit="contain"
+            fallbackSrc="https://via.placeholder.com/80?text=Logo"
+            borderRadius="full"
+            margin='0 auto'
+          />
           Our Programs {" "}
               <Box as="span" color="brand.primary">
                 At Flaviction

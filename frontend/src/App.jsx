@@ -22,6 +22,7 @@ import ChildDashboard from "./pages/ChildDashboard";
 
 
 import DashboardRedirect from "./pages/DashboardRedirect";
+import AdminAudit from "./pages/AdminAudit";
 
 export default function App() {
   return (
@@ -58,6 +59,10 @@ export default function App() {
       <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
         <Route path="/dashboard/admin" element={<AdminDashboard />} />
       </Route>
+      <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+      <Route path="/admin/audit" element={<AdminAudit />} />
+      </Route>
+
 
       {/* FALLBACK */}
       <Route path="*" element={<Navigate to="/" replace />} />

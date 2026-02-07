@@ -25,6 +25,7 @@ export default function Footer() {
     { label: "Contact", to: "/contact" },
     { label: "Location", to: "/location" },
     { label: "Enroll & Pay", to: "/enroll" },
+    { label: "AdminAudit", to: "/admin/audit" },
   ];
 
   return (
@@ -48,7 +49,7 @@ export default function Footer() {
                   boxSize={{ base: "52px", md: "60px" }}
                   objectFit="contain"
                   borderRadius="xl"
-                  fallbackSrc="https://via.placeholder.com/60?text=Logo"
+                  fallbackSrc="/image.jpg (3).jpg"
                 />
               </Box>
 
@@ -62,13 +63,18 @@ export default function Footer() {
               </VStack>
             </HStack>
 
+            {/* ✅ FIX: no divs inside Text */}
             <Text color="whiteAlpha.800" maxW="320px">
-              <div style={{color:'orange'}}>Your Child's Home Away from Home</div>
-              A safe, nurturing, and stimulating environment where children learn,
-              play, and grow with confidence.
-              <br />
-              <div style={{color:'grey'}}>Raising Happy Hearts & Bright Minds!</div>
-              
+              <Text as="span" display="block" color="orange" fontWeight="semibold" mb={1}>
+                Your Child&apos;s Home Away from Home
+              </Text>
+
+              A safe, nurturing, and stimulating environment where children learn, play,
+              and grow with confidence.
+
+              <Text as="span" display="block" color="gray.300" mt={2} fontStyle="italic">
+                Raising Happy Hearts &amp; Bright Minds!
+              </Text>
             </Text>
 
             {/* Social icons */}
@@ -189,3 +195,4 @@ export default function Footer() {
     </Box>
   );
 }
+
