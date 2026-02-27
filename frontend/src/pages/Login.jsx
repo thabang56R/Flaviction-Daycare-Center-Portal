@@ -67,9 +67,9 @@ const Login = () => {
       const role = result.user?.role;
 
       // ✅ Redirect to the correct dashboard first
-      if (role === "parent") navigate("/parentdashboard", { replace: true });
-      else if (role === "teacher") navigate("/teacherdashboard", { replace: true });
-      else if (role === "admin") navigate("/admindashboard", { replace: true });
+      if (role === "parent") navigate("/dashboard/parent", { replace: true });
+      else if (role === "teacher") navigate("/ashboard/teacher", { replace: true });
+      else if (role === "admin") navigate("/dashboard/admin", { replace: true });
       else navigate("/", { replace: true });
     } catch (err) {
       toast({
