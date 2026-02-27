@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Container, Heading, Text, VStack, SimpleGrid } from '@chakra-ui/react';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
+import DailyRoutine from '../components/common/DailyRoutine';
 
 const Curriculum = () => (
   <Box py={16} bg="orange" bgImage="url('/bg 3.jpeg')"
@@ -42,6 +43,7 @@ const Curriculum = () => (
         </SimpleGrid>
       </VStack>
     </Container>
+    <DailyRoutine />
     <Footer />
   </Box>
 );

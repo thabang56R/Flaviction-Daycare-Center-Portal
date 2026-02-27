@@ -20,14 +20,13 @@ import AdminDashboard from "./pages/AdminDashboard";
 import SelectChild from "./pages/SelectChild";
 import ChildDashboard from "./pages/ChildDashboard";
 
-
 import DashboardRedirect from "./pages/DashboardRedirect";
 import AdminAudit from "./pages/AdminAudit";
 
 export default function App() {
   return (
     <Routes>
-      {/* PUBLIC */}
+      {/* ========== PUBLIC ROUTES ========== */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
@@ -38,33 +37,32 @@ export default function App() {
       <Route path="/enroll" element={<EnrollAndPay />} />
       <Route path="/location" element={<Location />} />
 
-      {/* DASHBOARD BASE */}
+      {/* ========== PROTECTED DASHBOARD ROUTES ========== */}
+      {/* All /dashboard/* routes must live under ONE protected parent route */}
       <Route element={<ProtectedRoute />}>
+        {/* Base dashboard path → decide where to send user (by role) */}
         <Route path="/dashboard" element={<DashboardRedirect />} />
+
+        {/* Parent-only */}
+        <Route element={<ProtectedRoute allowedRoles={["parent"]} />}>
+          <Route path="/dashboard/parent" element={<ParentDashboard />} />
+          <Route path="/dashboard/select-child" element={<SelectChild />} />
+          <Route path="/dashboard/child/:childId" element={<ChildDashboard />} />
+        </Route>
+
+        {/* Teacher-only */}
+        <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
+          <Route path="/dashboard/teacher" element={<TeacherDashboard />} />
+        </Route>
+
+        {/* Admin-only */}
+        <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+          <Route path="/dashboard/admin" element={<AdminDashboard />} />
+          <Route path="/admin/audit" element={<AdminAudit />} />
+        </Route>
       </Route>
 
-      {/* PARENT */}
-      <Route element={<ProtectedRoute allowedRoles={["parent"]} />}>
-        <Route path="/dashboard/parent" element={<ParentDashboard />} />
-        <Route path="/dashboard/select-child" element={<SelectChild />} />
-        <Route path="/dashboard/child/:childId" element={<ChildDashboard />} />
-      </Route>
-
-      {/* TEACHER */}
-      <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
-        <Route path="/dashboard/teacher" element={<TeacherDashboard />} />
-      </Route>
-
-      {/* ADMIN */}
-      <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
-        <Route path="/dashboard/admin" element={<AdminDashboard />} />
-      </Route>
-      <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
-      <Route path="/admin/audit" element={<AdminAudit />} />
-      </Route>
-
-
-      {/* FALLBACK */}
+      {/* ========== FALLBACK ========== */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

@@ -1,5 +1,5 @@
 // src/pages/Login.jsx
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Button,
@@ -13,6 +13,7 @@ import {
   Text,
   Link as ChakraLink,
   FormErrorMessage,
+  useToast,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { motion } from "framer-motion";
@@ -22,14 +23,11 @@ import { useNavigate, Link as RouterLink } from "react-router-dom";
 const MotionVStack = motion(VStack);
 
 const Login = () => {
-  const { login, user } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const toast = useToast();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -59,24 +57,28 @@ const Login = () => {
     setSubmitting(true);
 
     try {
-      
-      const ok = await login({
-        email: formData.email,
+      const result = await login({
+        email: formData.email.trim(),
         password: formData.password,
       });
 
-      if (!ok) return;
+      if (!result?.ok) return;
 
-      
-      const saved = localStorage.getItem("smileyUser");
-      const loggedInUser = saved ? JSON.parse(saved) : user;
+      const role = result.user?.role;
 
-      const role = loggedInUser?.role;
-
-      if (role === "parent") navigate("/dashboard/parent");
-      else if (role === "teacher") navigate("/dashboard/teacher");
-      else if (role === "admin") navigate("/dashboard/admin");
-      else navigate("/parentdashboard"); 
+      // ✅ Redirect to the correct dashboard first
+      if (role === "parent") navigate("/parentdashboard", { replace: true });
+      else if (role === "teacher") navigate("/teacherdashboard", { replace: true });
+      else if (role === "admin") navigate("/admindashboard", { replace: true });
+      else navigate("/", { replace: true });
+    } catch (err) {
+      toast({
+        title: "Login error",
+        description: err.message || "Something went wrong",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     } finally {
       setSubmitting(false);
     }
@@ -118,6 +120,7 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               size="lg"
+              autoComplete="email"
             />
             <FormErrorMessage>{errors.email}</FormErrorMessage>
           </FormControl>
@@ -131,12 +134,13 @@ const Login = () => {
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={handleChange}
+                autoComplete="current-password"
               />
               <InputRightElement h="full">
                 <Button
                   variant="ghost"
                   onClick={() => setShowPassword((v) => !v)}
-                  aria-label={showPassword ? "Hide" : "Show"}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                 </Button>
@@ -152,21 +156,16 @@ const Login = () => {
             w="full"
             isLoading={submitting}
             loadingText="Logging in..."
-            mt={4}
+            mt={2}
           >
             Login
           </Button>
         </VStack>
       </Box>
 
-      <Text fontSize="sm" color="gray.600" mt={6}>
-        Don't have an account?{" "}
-        <ChakraLink
-          as={RouterLink}
-          to="/signup"
-          color="brand.primary"
-          fontWeight="medium"
-        >
+      <Text fontSize="sm" color="gray.600" mt={2}>
+        Don&apos;t have an account?{" "}
+        <ChakraLink as={RouterLink} to="/signup" color="brand.primary" fontWeight="medium">
           Sign up here
         </ChakraLink>
       </Text>
@@ -175,3 +174,4 @@ const Login = () => {
 };
 
 export default Login;
+

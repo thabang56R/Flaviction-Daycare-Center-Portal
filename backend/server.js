@@ -7,6 +7,14 @@ import morgan from "morgan";
 import announcementsRoutes from "./src/routes/announcements.js";
 import menuRoutes from "./src/routes/menu.js";
 import reportCardRoutes from "./src/routes/reportcards.js";
+import { attachRequestId } from "./src/utils/audit.js";
+import auditRoutes from "./src/routes/audit.js";
+
+
+
+
+
+
 
 
 
@@ -56,6 +64,8 @@ app.options("/", cors());
 
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(attachRequestId);
+app.use("/api/audit", auditRoutes);
 
 
 app.set("etag", false);

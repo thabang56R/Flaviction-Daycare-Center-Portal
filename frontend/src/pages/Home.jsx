@@ -23,8 +23,11 @@ import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import PartnersSection from '../components/home/PartnersSection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
-import EnrollAndPay from '../pages/EnrollAndPay';
 import VideoAsImageSection from "../components/home/VideoAsImageSection";
+import HeroCarousel from "../components/home/HeroCarousel";
+import PrincipalMessage from "../components/home/PrincipalMessage";
+import SafetySecurity from "../components/home/SafetySecurity";
+import MeetTeachers from "../components/home/MeetTeachers";
 
 
 
@@ -68,69 +71,7 @@ const services = [
 
 
 
-// Hero Component
-const Hero = () => {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-  return (
-    <MotionBox
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 1 }}
-      bgImage={`url('image (3).jpg')`}
-      bgSize="cover"
-      bgRepeat="no-repeat"
-      bgPos="center"
-      color="white"
-      py={{ base: 24, md: 40 }}
-      textAlign="center"
-      position="relative"
-    >
-      <Container maxW="container.lg" position="relative" zIndex={2}>
-        <MotionVStack
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1.1 }}
-          spacing={{ base: 6, md: 8 }}
-        >
-          <Heading
-            as="h1"
-            fontSize={{ base: '4xl', md: '6xl', lg: '7xl' }}
-            lineHeight="shorter"
-            fontWeight="extrabold"
-            textShadow="2px 4px 12px rgba(0,0,0,0.5)"
-          >
-           
-          </Heading>
-
-          <MotionText
-            fontSize={{ base: 'xl', md: '2xl' }}
-            fontWeight="medium"
-            whileHover={{ scale: 1.05, color: 'yellow.300' }}
-            transition={{ duration: 0.3 }}
-          >
-            
-          </MotionText>
-
-          <MotionText
-            fontSize={{ base: 'lg', md: 'xl' }}
-            maxW="3xl"
-            mx="auto"
-            opacity={0.95}
-            whileHover={{ scale: 1.05, color: 'yellow.300' }}
-            transition={{ duration: 0.3 }}
-          > 
-          </MotionText>
-        </MotionVStack>
-      </Container>
-      
-      
-    </MotionBox>
-    
-  );
-};
 
 
 // Programs Component
@@ -324,13 +265,16 @@ const Home = () => {
       
       >
       <Header />
-      <Hero />
+      <HeroCarousel />
+      <PrincipalMessage />
+      <MeetTeachers />
       <Programs />
       <WhyChooseUs />
       {/*<VideoSection />*/}
       <PartnersSection />
       <TestimonialsSection />
       <VideoAsImageSection />
+      <SafetySecurity />
       <CTABanner />
       
       <Footer />
