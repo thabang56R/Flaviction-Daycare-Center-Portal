@@ -20,42 +20,30 @@ Secure and structured data handling
 👨‍👩‍👧 Parents
 
 Access child-related information
-
 View updates and announcements
-
 Easy-to-use and mobile-friendly interface
 
 🎨 UI & UX
 
 Clean, friendly daycare-themed design
-
 Fully responsive (mobile, tablet, desktop)
-
 Built with accessibility and simplicity in mind
 
 🛠️ Tech Stack
 Frontend
 
 React.js
-
 Chakra UI
-
 Framer Motion
-
 Vite
 
 Backend (Planned / In Progress)
 
 Node.js
-
 Express.js
-
 MongoDB
-
 JWT Authentication
-
 Deployment
-
 Vercel (Frontend)
 
 📂 Project Structure
@@ -77,44 +65,31 @@ flaviction-daycare-center-portal/
 This project was built to:
 
 Solve a real business need for a daycare center
-
 Demonstrate full-stack readiness using modern tools
-
 Showcase skills beyond tutorials (real users, real requirements)
-
 Strengthen my portfolio for junior, graduate, and internship roles
 
 🧠 What I Learned
 
 Building production-ready React applications
-
 Designing user-friendly dashboards
-
 Structuring scalable frontend projects
-
 Working with real clients and real feedback
-
 Deploying and maintaining live web applications
 
 
 📌 Future Enhancements
 
 Authentication & role-based access
-
 Attendance tracking
-
 Payment management
-
 Messaging between parents and staff
-
 Admin analytics dashboard
 
 👨‍💻 Developer
 
 Thabang Rakeng
-
 Full Stack Developer (MERN)
-
 Junior / Graduate / Internship Ready
 
 Passionate about building real-world software solutions
