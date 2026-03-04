@@ -57,13 +57,6 @@ MongoDB
 
 ---
 
-## 📸 Screenshots
-
-*(Add screenshots of the portal here)*
-
-Example:
-
-
 ⭐ Support
 
 If you like this project, please star the repo ⭐
