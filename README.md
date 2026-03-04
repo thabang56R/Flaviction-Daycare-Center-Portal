@@ -57,6 +57,58 @@ MongoDB
 
 ---
 
+
+---
+
+## ⚙ Installation
+
+Clone the repository
+git clone https://github.com/thabang56R/flaviction-daycare-portal.git
+
+Install dependencies
+
+npm install
+Run the development server
+
+npm run dev
+
+
+---
+
+## 🎯 Project Purpose
+
+This project was developed to demonstrate the creation of a real-world web application that supports daycare administration and parent engagement using the MERN stack.
+
+It showcases practical implementation of modern frontend frameworks, backend APIs, and database integration.
+
+---
+
+## 📌 Future Improvements
+
+• Parent login and authentication  
+• Attendance tracking  
+• Child activity reporting  
+• Notification system  
+• Messaging between parents and staff
+• Language Choose
+
+
+---
+
+## 👨‍💻 Author
+
+**Thabang Rakeng**
+
+GitHub:  
+https://github.com/thabang56R
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+
 ⭐ Support
 
 If you like this project, please star the repo ⭐
