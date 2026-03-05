@@ -1,3 +1,5 @@
+![Profile Views](https://komarev.com/ghpvc/?username=thabang56R&color=yellow)
+
 # 🌈 Flaviction Daycare Center Portal
 
 ![MERN Stack](https://img.shields.io/badge/Stack-MERN-green)
